@@ -15,9 +15,9 @@ public:
          std::vector<std::vector<int>> w_dest);
   void set_value(double inp);
   void set_act_val(double res);
-  void set_weights(std::vector<double> w_val,
-                   std::vector<std::vector<int>> w_dest);
+  void set_wts(std::vector<double> w_val, std::vector<std::vector<int>> w_dest);
   double get_value();
+  std::vector<double> get_wts();
 
 private:
   double value;
