@@ -27,6 +27,7 @@ void neuron::set_wts(std::vector<double> w_val,
 }
 
 double neuron::get_value() { return value; }
+double neuron::get_act_val() { return act_val; }
 
 std::vector<double> neuron::get_wts() {
   std::vector<double> wts;

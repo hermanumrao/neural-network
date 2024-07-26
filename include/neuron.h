@@ -17,6 +17,7 @@ public:
   void set_act_val(double res);
   void set_wts(std::vector<double> w_val, std::vector<std::vector<int>> w_dest);
   double get_value();
+  double get_act_val();
   std::vector<double> get_wts();
 
 private:
