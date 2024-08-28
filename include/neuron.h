@@ -4,21 +4,20 @@
 
 struct wt_ptr {
   double weight;
-  std::vector<int> dest;
+  int dest;
 };
 
 class neuron {
 public:
   neuron();
   neuron(double val);
-  neuron(double val, std::vector<double> w_val,
-         std::vector<std::vector<int>> w_dest);
+  neuron(double val, std::vector<double> w_val, std::vector<int> w_dest);
   void set_value(double inp);
   void set_act_val(double res);
-  void set_wts(std::vector<double> w_val, std::vector<std::vector<int>> w_dest);
+  void set_wts(std::vector<double> w_val, std::vector<int> w_dest);
   double get_value();
   double get_act_val();
-  std::vector<double> get_wts();
+  std::vector<wt_ptr> get_wts();
 
 private:
   double value;

@@ -15,7 +15,7 @@ vector<double> fprop(vector<double> values, vector<vector<double>> wts) {
   for (unsigned int i = 0; i < values.size(); i++) {
     double n_val = 0.0;
     for (unsigned int j = 0; j < wts[i].size(); j++) {
-      // cout << wts[j][i] << '*' << values[j] << endl;
+      cout << wts[j][i] << '*' << values[j] << endl;
       n_val += wts[j][i] * values[j];
     }
     ret.push_back(n_val);
@@ -32,10 +32,6 @@ int main() {
   i_lay.set_weights({{0.5}}, {{1}});
   h_lay.set_weights({{3.0}}, {{1}});
 
-  // vector<vector<double>> data = {
-  //     {1.0, 1.0}, {1.0, 0.0}, {0.0, 1.0}, {0.0, 0.0}};
-  // vector<double> labels = {0.0, 1.0, 1.0, 0.0};
-  //
   vector<double> data = {1.0, 0.0};
   vector<double> labels = {1.0, 0.0};
 
@@ -44,9 +40,9 @@ int main() {
     double inp1 = data[tmp];
     // forward propagation
     i_lay.set_inputs({inp1});
-    h_lay.set_val(fprop(i_lay.get_vals(), i_lay.get_weights()));
+    h_lay.set_val(fprop(i_lay.get_vals(), i_lay.get_weights(1)));
     h_lay.activate_layer(incrementor);
-    o_lay.set_val(fprop(h_lay.get_act_vals(), h_lay.get_weights()));
+    o_lay.set_val(fprop(h_lay.get_act_vals(), h_lay.get_weights(1)));
     o_lay.activate_layer(incrementor);
     if (epoch % ((int)floor(epoch / 10) + 1) == 0) {
       cout << "Currently on epoch [" << epoch << "/" << EPOCH_NUM

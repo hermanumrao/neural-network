@@ -1,4 +1,5 @@
 #include "layer.h"
+#include "neuron.h"
 #include <iostream>
 #include <vector>
 
@@ -17,7 +18,7 @@ void inp_layer::set_weights(std::vector<std::vector<double>> w_val,
   if (w_val.size() != w_dest.size())
     std::cerr << "error encountered while setting weights in input layer";
   for (unsigned int i = 0; i < w_val.size(); i++) {
-    neurons[i].set_wts(w_val[i], {w_dest[i]});
+    neurons[i].set_wts(w_val[i], w_dest[i]);
   }
 }
 std::vector<double> inp_layer::get_vals() {
@@ -27,10 +28,15 @@ std::vector<double> inp_layer::get_vals() {
   }
   return vals;
 }
-std::vector<std::vector<double>> inp_layer::get_weights() {
+std::vector<std::vector<double>> inp_layer::get_weights(int l_next) {
   std::vector<std::vector<double>> wts;
-  for (auto neuron : neurons) {
-    wts.push_back(neuron.get_wts());
+  for (int i = 0; i < neurons.size(); i++) {
+    std::vector<wt_ptr> wts_n = neurons[i].get_wts();
+    std::vector<double> weights_n(l_next, 0.0);
+    for (int j = 0; j < wts_n.size(); j++) {
+      weights_n[wts_n[j].dest - 1] = wts_n[j].weight;
+    }
+    wts.push_back(weights_n);
   }
   return wts;
 }
@@ -65,10 +71,15 @@ std::vector<double> hid_layer::get_act_vals() {
   }
   return acts;
 }
-std::vector<std::vector<double>> hid_layer::get_weights() {
+std::vector<std::vector<double>> hid_layer::get_weights(int l_next) {
   std::vector<std::vector<double>> wts;
-  for (auto neuron : neurons) {
-    wts.push_back(neuron.get_wts());
+  for (int i = 0; i < neurons.size(); i++) {
+    std::vector<wt_ptr> wts_n = neurons[i].get_wts();
+    std::vector<double> weights_n(l_next, 0.0);
+    for (int j = 0; j < wts_n.size(); j++) {
+      weights_n[wts_n[j].dest - 1] = wts_n[j].weight;
+    }
+    wts.push_back(weights_n);
   }
   return wts;
 }

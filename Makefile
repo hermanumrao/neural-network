@@ -1,6 +1,6 @@
 # Define compiler and flags
 CXX := g++
-CXXFLAGS := -std=c++11 -Wall -Wextra -g
+CXXFLAGS := -std=c++11 -g -Og
 
 # Directories
 SRC_DIR := src

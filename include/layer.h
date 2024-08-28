@@ -1,7 +1,7 @@
 #ifndef LAYER_H
 #define LAYER_H
-
 #include "neuron.h"
+#include "tools.h"
 #include <iostream>
 #include <vector>
 
@@ -15,7 +15,7 @@ public:
   void set_weights(std::vector<std::vector<double>> w_val,
                    std::vector<std::vector<int>> w_dest);
   std::vector<double> get_vals();
-  std::vector<std::vector<double>> get_weights();
+  std::vector<std::vector<double>> get_weights(int l_next);
 };
 
 class hid_layer : neuron {
@@ -29,7 +29,7 @@ public:
   void set_weights(std::vector<std::vector<double>> w_val,
                    std::vector<std::vector<int>> w_dest);
   std::vector<double> get_act_vals();
-  std::vector<std::vector<double>> get_weights();
+  std::vector<std::vector<double>> get_weights(int l_next);
 };
 
 class out_layer : neuron {
